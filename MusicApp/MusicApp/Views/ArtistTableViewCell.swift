@@ -13,8 +13,8 @@ final class ArtistTableViewCell: UITableViewCell {
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var artistImage: UIImageView!
 
-    func configure(artist: String, image: UIImage) {
+    func configure(artist: String, image: String) {
         artistName.text = artist
-        artistImage.image = image
+//        artistImage.image = image
     }
 }

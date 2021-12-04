@@ -13,9 +13,9 @@ final class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var artistsLabel: UILabel!
 
-    func configure(albumTitle: String, albumImage: UIImage, artists: String) {
+    func configure(albumTitle: String, albumImage: String, artists: String) {
         albumTitleLabel.text = albumTitle
-        albumCover.image = albumImage
+//        albumCover.image = albumImage
         artistsLabel.text = artists
     }
 }
