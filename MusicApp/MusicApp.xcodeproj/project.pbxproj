@@ -19,6 +19,10 @@
 		F97867CC275A6F0800A48328 /* MusicAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867CB275A6F0800A48328 /* MusicAppUITestsLaunchTests.swift */; };
 		F97867DB275A737500A48328 /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867DA275A737500A48328 /* AlbumsViewController.swift */; };
 		F97867DD275A73A100A48328 /* TracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867DC275A73A100A48328 /* TracksViewController.swift */; };
+		F97867E1275BC21B00A48328 /* ArtistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867E0275BC21B00A48328 /* ArtistTableViewCell.swift */; };
+		F97867E3275BC22F00A48328 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867E2275BC22F00A48328 /* AlbumCollectionViewCell.swift */; };
+		F97867E5275BC24200A48328 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867E4275BC24200A48328 /* TrackTableViewCell.swift */; };
+		F97867E7275BC55E00A48328 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867E6275BC55E00A48328 /* AlbumModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		F97867CB275A6F0800A48328 /* MusicAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F97867DA275A737500A48328 /* AlbumsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		F97867DC275A73A100A48328 /* TracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksViewController.swift; sourceTree = "<group>"; };
+		F97867E0275BC21B00A48328 /* ArtistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistTableViewCell.swift; sourceTree = "<group>"; };
+		F97867E2275BC22F00A48328 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		F97867E4275BC24200A48328 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		F97867E6275BC55E00A48328 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				F97867AB275A6F0600A48328 /* Main.storyboard */,
+				F97867E0275BC21B00A48328 /* ArtistTableViewCell.swift */,
+				F97867E2275BC22F00A48328 /* AlbumCollectionViewCell.swift */,
+				F97867E4275BC24200A48328 /* TrackTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -156,6 +167,7 @@
 		F97867DF275A73C400A48328 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F97867E6275BC55E00A48328 /* AlbumModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,12 +303,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F97867E3275BC22F00A48328 /* AlbumCollectionViewCell.swift in Sources */,
+				F97867E7275BC55E00A48328 /* AlbumModel.swift in Sources */,
 				F97867DD275A73A100A48328 /* TracksViewController.swift in Sources */,
 				F97867AA275A6F0600A48328 /* ArtistSearchViewController.swift in Sources */,
 				F97867A6275A6F0600A48328 /* AppDelegate.swift in Sources */,
+				F97867E5275BC24200A48328 /* TrackTableViewCell.swift in Sources */,
 				F97867DB275A737500A48328 /* AlbumsViewController.swift in Sources */,
 				F97867A8275A6F0600A48328 /* SceneDelegate.swift in Sources */,
 				F97867B0275A6F0600A48328 /* MusicApp.xcdatamodeld in Sources */,
+				F97867E1275BC21B00A48328 /* ArtistTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
