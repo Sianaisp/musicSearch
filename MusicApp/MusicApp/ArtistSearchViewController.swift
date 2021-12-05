@@ -7,14 +7,30 @@
 
 import UIKit
 
-class ArtistSearchViewController: UIViewController {
+class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
 
     @IBOutlet private weak var tableView: UITableView!
     private var artists = [Artist]()
+    let searchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadArtists()
+        setupSearchBar()
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text else { return }
+        loadArtists(query: query)
+    }
+
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        let searchBar = navigationItem.searchController?.searchBar
+        searchBar?.barTintColor = .white
+        searchBar?.searchTextField.leftView?.tintColor = .white
+        let textFieldInsideUISearchBar = searchBar?.value(forKey: "searchField") as? UITextField
+        textFieldInsideUISearchBar?.textColor = UIColor.white
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,75 +47,43 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "artistCell", for: indexPath) as? ArtistTableViewCell else { fatalError("Celll does not exist")}
-        cell.configure(artist: artists[indexPath.row].artistName,
-                       image: artists[indexPath.row].artistImage ?? "")
+        let identifier = "artistCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier,
+                                                       for: indexPath) as? ArtistTableViewCell else { fatalError("Could not dequeue cell")}
+        cell.configure(artist: artists[indexPath.row].name,
+                       image: artists[indexPath.row].picture ?? "")
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentAlbumsCollections(selectedArtistID: artists[indexPath.row].artistId)
+        presentAlbumsCollections(selectedArtistID: artists[indexPath.row].id)
     }
 
     func presentAlbumsCollections(selectedArtistID: Int) {
         performSegue(withIdentifier: "albums.segue.identifier",
                     sender: selectedArtistID)
     }
+}
 
-    func getRequest(query: String, completion: @escaping ([Any], Int) -> Void) {
-        let request = NSMutableURLRequest(url: NSURL(string: query)! as URL)
-        let session = URLSession.shared
-        request.httpMethod = "GET"
-        session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            var requestArray = [Any]()
-            var total = 0
-            guard error == nil else { return }
+extension ArtistSearchViewController {
+    func loadArtists(query: String) {
+        let query = "http://api.deezer.com/" + "search/artist?q=" + query
+        let request = NetworkRequest(query: query)
+        request.execute(completion: { data in
             guard let data = data else { return }
-            do {
-
-                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any],
-                let array = json["data"] as? NSArray {
-                    total = (json["total"] as? Int)!
-                    for case let result in array {
-                        if let object = Artist.parse(result as! [String : Any]) {
-                            requestArray.append(object)
-                        }
-//                        if let object = Album.parse(result as! [String : Any]){
-//                            requestArray.append(object)
-//                        }
-//                        if let object = Track.parse(result as! [String : Any]){
-//                            requestArray.append(object)
-//                        }
-                    }
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        completion(requestArray, total)
-        }).resume()
-        ////////
-//        session.dataTask(with: request as URLRequest, completionHandler: { data,_,_ in
-//            var requestArray = [Any]()
-//            var total = 0
-//            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let array = json["data"] as? NSArray {
-//                total = (json["total"] as? Int)!
-//                for case let result in array {
-//                    if let object = Artist.parse(result as! [String : Any]) {
-//                        requestArray.append(object)
-//                    }
-//                }
-//            }
-//            completion(requestArray, total)
-//        }).resume()
+            self.decode(data)
+            self.tableView.reloadData()
+        })
     }
 
-    func loadArtists() {
-        let query = "http://api.deezer.com/" + "search/artist?q=radiohead"
-        getRequest(query: query) { artists, _ in
-            DispatchQueue.main.async {
-                self.artists = artists as? [Artist] ?? []
-                self.tableView.reloadData()
-            }
+    func decode(_ data: Data) {
+        let decoder = JSONDecoder()
+        do {
+            let result = try decoder.decode(Artists.self, from: data)
+            artists = result.data ?? []
+        }
+        catch {
+            print("Failed to decode with error: \(error)")
         }
     }
 }
