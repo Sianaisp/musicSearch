@@ -25,7 +25,6 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
             query = "http://api.deezer.com/" + "search/artist?q=" + query
             loadArtists(query: query)
         }
-
     }
 
     func setupSearchBar() {
@@ -91,4 +90,3 @@ extension ArtistSearchViewController {
         }
     }
 }
-
