@@ -15,7 +15,9 @@ final class AlbumCollectionViewCell: UICollectionViewCell {
 
     func configure(albumTitle: String, albumImage: String, artists: String) {
         albumTitleLabel.text = albumTitle
-//        albumCover.image = albumImage
         artistsLabel.text = artists
+        let url = URL(string: albumImage)
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        albumCover.image = UIImage(data: data!)
     }
 }

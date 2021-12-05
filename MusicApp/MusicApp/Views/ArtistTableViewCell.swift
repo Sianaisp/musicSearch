@@ -15,6 +15,8 @@ final class ArtistTableViewCell: UITableViewCell {
 
     func configure(artist: String, image: String) {
         artistName.text = artist
-//        artistImage.image = image
+        let url = URL(string: image)
+        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        artistImage.image = UIImage(data: data!)
     }
 }
