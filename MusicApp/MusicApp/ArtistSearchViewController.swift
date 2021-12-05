@@ -10,8 +10,8 @@ import UIKit
 class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
 
     @IBOutlet private weak var tableView: UITableView!
-    private var artists = [Artist]()
-    let searchController = UISearchController()
+    private let searchController = UISearchController()
+    private var artists: [Artist] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +19,13 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
     }
 
     func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text else { return }
-        loadArtists(query: query)
+        guard var query = searchController.searchBar.text else { return }
+        if !query.isEmpty {
+            query = query.replacingOccurrences(of: " ", with: "-")
+            query = "http://api.deezer.com/" + "search/artist?q=" + query
+            loadArtists(query: query)
+        }
+
     }
 
     func setupSearchBar() {
@@ -67,7 +72,6 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
 
 extension ArtistSearchViewController {
     func loadArtists(query: String) {
-        let query = "http://api.deezer.com/" + "search/artist?q=" + query
         let request = NetworkRequest(query: query)
         request.execute(completion: { data in
             guard let data = data else { return }

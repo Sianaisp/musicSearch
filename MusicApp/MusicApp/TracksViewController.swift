@@ -10,9 +10,9 @@ import UIKit
 
 class TracksViewController: UIViewController {
 
-    var selectedAlbumID: Int = 0
-    private var tracks = [Track]()
     @IBOutlet private weak var tableView: UITableView!
+    private var tracks: [Track] = []
+    var selectedAlbumID: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

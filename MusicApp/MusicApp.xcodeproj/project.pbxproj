@@ -119,8 +119,8 @@
 		F97867A4275A6F0600A48328 /* MusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				F97867DF275A73C400A48328 /* Models */,
 				F97867DE275A73AE00A48328 /* Views */,
+				F97867DF275A73C400A48328 /* Models */,
 				F97867D9275A718D00A48328 /* ViewControllers */,
 				F97867A5275A6F0600A48328 /* AppDelegate.swift */,
 				F97867A7275A6F0600A48328 /* SceneDelegate.swift */,
@@ -175,8 +175,8 @@
 			children = (
 				F97867EA275D601E00A48328 /* ArtistModel.swift */,
 				F97867E6275BC55E00A48328 /* AlbumModel.swift */,
-				F97867E8275CF5FB00A48328 /* NetworkRequest.swift */,
 				F97867EC275D63A700A48328 /* TrackModel.swift */,
+				F97867E8275CF5FB00A48328 /* NetworkRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

@@ -11,7 +11,7 @@ import UIKit
 class AlbumsViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var albums = [Album]()
+    private var albums: [Album] = []
     var selectedArtistID: Int = 0
 
     override func viewDidLoad() {
