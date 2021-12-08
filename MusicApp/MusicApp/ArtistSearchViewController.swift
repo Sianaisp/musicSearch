@@ -16,6 +16,7 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
+        tableView.register(UINib(nibName: "ArtistsHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "ArtistsHeaderView")
     }
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -46,6 +47,17 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
 }
 
 extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate {
+
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ArtistsHeaderView") as! ArtistsHeaderView
+    return headerView
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return artists.count
     }
