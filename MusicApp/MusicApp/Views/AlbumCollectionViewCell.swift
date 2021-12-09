@@ -16,8 +16,12 @@ final class AlbumCollectionViewCell: UICollectionViewCell {
     func configure(albumTitle: String, albumImage: String, artists: String) {
         albumTitleLabel.text = albumTitle
         artistsLabel.text = artists
-        if let url = URL(string: albumImage), let data = try? Data(contentsOf: url) {
+        do {
+            guard let url = URL(string: albumImage) else { return }
+            let data = try Data(contentsOf: url)
             albumCover.image = UIImage(data: data)
+        } catch {
+         print("\(error)")
         }
     }
 }

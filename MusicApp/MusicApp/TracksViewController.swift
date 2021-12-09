@@ -12,6 +12,7 @@ class TracksViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     private var tracks: [Track] = []
+    @IBOutlet private weak var albumCover: UIImageView!
     var selectedAlbumID: Int = 0
 
     override func viewDidLoad() {

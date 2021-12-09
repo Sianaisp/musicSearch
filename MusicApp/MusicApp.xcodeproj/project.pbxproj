@@ -28,6 +28,9 @@
 		F97867ED275D63A700A48328 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97867EC275D63A700A48328 /* TrackModel.swift */; };
 		F9B020C3276092B700DCDBBC /* ArtistsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B020C2276092B700DCDBBC /* ArtistsHeaderView.xib */; };
 		F9B020C52760952100DCDBBC /* ArtistsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B020C42760952100DCDBBC /* ArtistsHeaderView.swift */; };
+		F9B020C72760E26C00DCDBBC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B020C62760E26C00DCDBBC /* Constants.swift */; };
+		F9B020CB2760F8FC00DCDBBC /* AlbumHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B020CA2760F8FC00DCDBBC /* AlbumHeaderView.swift */; };
+		F9B020CD2760F91100DCDBBC /* AlbumHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B020CC2760F91100DCDBBC /* AlbumHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		F97867EC275D63A700A48328 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		F9B020C2276092B700DCDBBC /* ArtistsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistsHeaderView.xib; sourceTree = "<group>"; };
 		F9B020C42760952100DCDBBC /* ArtistsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsHeaderView.swift; sourceTree = "<group>"; };
+		F9B020C62760E26C00DCDBBC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F9B020CA2760F8FC00DCDBBC /* AlbumHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumHeaderView.swift; sourceTree = "<group>"; };
+		F9B020CC2760F91100DCDBBC /* AlbumHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +178,8 @@
 				F97867E4275BC24200A48328 /* TrackTableViewCell.swift */,
 				F9B020C2276092B700DCDBBC /* ArtistsHeaderView.xib */,
 				F9B020C42760952100DCDBBC /* ArtistsHeaderView.swift */,
+				F9B020CA2760F8FC00DCDBBC /* AlbumHeaderView.swift */,
+				F9B020CC2760F91100DCDBBC /* AlbumHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +191,7 @@
 				F97867E6275BC55E00A48328 /* AlbumModel.swift */,
 				F97867EC275D63A700A48328 /* TrackModel.swift */,
 				F97867E8275CF5FB00A48328 /* NetworkRequest.swift */,
+				F9B020C62760E26C00DCDBBC /* Constants.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9B020CD2760F91100DCDBBC /* AlbumHeaderView.xib in Resources */,
 				F9B020C3276092B700DCDBBC /* ArtistsHeaderView.xib in Resources */,
 				F97867B5275A6F0800A48328 /* LaunchScreen.storyboard in Resources */,
 				F97867B2275A6F0800A48328 /* Assets.xcassets in Resources */,
@@ -324,12 +334,14 @@
 				F97867E7275BC55E00A48328 /* AlbumModel.swift in Sources */,
 				F97867DD275A73A100A48328 /* TracksViewController.swift in Sources */,
 				F97867AA275A6F0600A48328 /* ArtistSearchViewController.swift in Sources */,
+				F9B020C72760E26C00DCDBBC /* Constants.swift in Sources */,
 				F97867EB275D601E00A48328 /* ArtistModel.swift in Sources */,
 				F97867A6275A6F0600A48328 /* AppDelegate.swift in Sources */,
 				F97867E5275BC24200A48328 /* TrackTableViewCell.swift in Sources */,
 				F97867DB275A737500A48328 /* AlbumsViewController.swift in Sources */,
 				F97867A8275A6F0600A48328 /* SceneDelegate.swift in Sources */,
 				F97867E9275CF5FB00A48328 /* NetworkRequest.swift in Sources */,
+				F9B020CB2760F8FC00DCDBBC /* AlbumHeaderView.swift in Sources */,
 				F97867B0275A6F0600A48328 /* MusicApp.xcdatamodeld in Sources */,
 				F9B020C52760952100DCDBBC /* ArtistsHeaderView.swift in Sources */,
 				F97867E1275BC21B00A48328 /* ArtistTableViewCell.swift in Sources */,

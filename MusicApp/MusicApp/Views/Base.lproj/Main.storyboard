@@ -92,9 +92,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xjd-bB-hE3">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="12" y="88" width="390" height="774"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="3T6-B3-RcY">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="15" id="3T6-B3-RcY">
                                     <size key="itemSize" width="133" height="183"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -164,8 +164,8 @@
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="pcl-ki-neZ" firstAttribute="bottom" secondItem="xjd-bB-hE3" secondAttribute="bottom" id="41E-Cs-Rci"/>
-                            <constraint firstItem="pcl-ki-neZ" firstAttribute="trailing" secondItem="xjd-bB-hE3" secondAttribute="trailing" id="Acb-33-UyA"/>
-                            <constraint firstItem="xjd-bB-hE3" firstAttribute="leading" secondItem="pcl-ki-neZ" secondAttribute="leading" id="YOq-Zy-zJf"/>
+                            <constraint firstItem="pcl-ki-neZ" firstAttribute="trailing" secondItem="xjd-bB-hE3" secondAttribute="trailing" constant="12" id="Acb-33-UyA"/>
+                            <constraint firstItem="xjd-bB-hE3" firstAttribute="leading" secondItem="pcl-ki-neZ" secondAttribute="leading" constant="12" id="YOq-Zy-zJf"/>
                             <constraint firstItem="xjd-bB-hE3" firstAttribute="top" secondItem="pcl-ki-neZ" secondAttribute="top" id="riq-wf-Gz4"/>
                         </constraints>
                     </view>
@@ -278,6 +278,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9jW-kD-41g"/>
                     <connections>
+                        <outlet property="albumCover" destination="1bm-AS-fqT" id="DeH-UX-A6y"/>
                         <outlet property="tableView" destination="IQo-1T-ECP" id="NWX-S3-Rp8"/>
                     </connections>
                 </viewController>

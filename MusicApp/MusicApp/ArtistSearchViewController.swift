@@ -12,18 +12,19 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
     @IBOutlet private weak var tableView: UITableView!
     private let searchController = UISearchController()
     private var artists: [Artist] = []
+    private var selectedArtist: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-        tableView.register(UINib(nibName: "ArtistsHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "ArtistsHeaderView")
+        tableView.register(UINib(nibName: Constants.artistHeaderView, bundle: nil), forHeaderFooterViewReuseIdentifier: Constants.artistHeaderView)
     }
 
     func updateSearchResults(for searchController: UISearchController) {
         guard var query = searchController.searchBar.text else { return }
         if !query.isEmpty {
             query = query.replacingOccurrences(of: " ", with: "-")
-            query = "http://api.deezer.com/" + "search/artist?q=" + query
+            query = Constants.deezerApi + Constants.artistSearch + query
             loadArtists(query: query)
         }
     }
@@ -42,6 +43,7 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
         if let controller = segue.destination as? AlbumsViewController,
            let selectedArtistID = sender as? Int {
             controller.selectedArtistID = selectedArtistID
+            controller.selectedArtist = selectedArtist
         }
     }
 }
@@ -50,11 +52,11 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
 
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return Constants.headerHeight
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ArtistsHeaderView") as! ArtistsHeaderView
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Constants.artistHeaderView) as! ArtistsHeaderView
     return headerView
     }
 
@@ -63,7 +65,7 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "artistCell"
+        let identifier = Constants.artistCellIdentifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier,
                                                        for: indexPath) as? ArtistTableViewCell else { fatalError("Could not dequeue cell")}
         cell.configure(artist: artists[indexPath.row].name,
@@ -72,12 +74,13 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedArtist = artists[indexPath.row].name
         presentAlbumsCollections(selectedArtistID: artists[indexPath.row].id)
     }
 
     func presentAlbumsCollections(selectedArtistID: Int) {
-        performSegue(withIdentifier: "albums.segue.identifier",
-                    sender: selectedArtistID)
+        performSegue(withIdentifier: Constants.albumSegueIdentifier,
+                     sender: selectedArtistID)
     }
 }
 

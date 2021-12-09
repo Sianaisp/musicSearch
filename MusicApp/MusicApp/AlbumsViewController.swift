@@ -13,9 +13,12 @@ class AlbumsViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     private var albums: [Album] = []
     var selectedArtistID: Int = 0
+    var selectedArtist: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.register(UINib(nibName: Constants.albumHeaderView, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: Constants.albumHeaderView)
         loadAlbums()
     }
 
@@ -30,6 +33,7 @@ class AlbumsViewController: UIViewController {
 extension AlbumsViewController: UICollectionViewDelegate,
                                     UICollectionViewDataSource,
                                     UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albums.count
     }
@@ -47,7 +51,7 @@ extension AlbumsViewController: UICollectionViewDelegate,
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "albumCell",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.albumCellIdentifier,
                                                             for: indexPath) as? AlbumCollectionViewCell else { fatalError("Cell does not exist")}
         cell.configure(albumTitle: albums[indexPath.row].title,
                        albumImage: albums[indexPath.row].cover ?? "",
@@ -59,15 +63,34 @@ extension AlbumsViewController: UICollectionViewDelegate,
         presentTracks(selectedAlbumID: albums[indexPath.row].id)
     }
 
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                            withReuseIdentifier: Constants.albumHeaderView,
+                                                                            for: indexPath as IndexPath) as? AlbumHeaderView {
+            headerView.configure(artist: selectedArtist ?? "", hasSeveralAlbums: true)
+            return headerView
+        }
+        return UICollectionReusableView()
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width,
+                      height: 60)
+    }
+
     func presentTracks(selectedAlbumID: Int?) {
-        performSegue(withIdentifier: "tracks.segue.identifier",
+        performSegue(withIdentifier: Constants.tracksSegueIdentifier,
                      sender: selectedAlbumID)
     }
 }
 
 extension AlbumsViewController {
     func loadAlbums() {
-        let query = "http://api.deezer.com/" + "artist/\(self.selectedArtistID)/albums"
+        let query = Constants.deezerApi + "artist/\(self.selectedArtistID)/albums"
         let request = NetworkRequest(query: query)
         request.execute(completion: { data in
             guard let data = data else { return }
