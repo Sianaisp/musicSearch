@@ -39,7 +39,7 @@ extension TracksViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func loadTracks() {
-        let query = "http://api.deezer.com/" + "album/\(self.selectedAlbumID)/tracks"
+        let query = Constants.deezerApi + "album/\(self.selectedAlbumID)/tracks"
         let request = NetworkRequest(query: query)
         request.execute(completion: { data in
             guard let data = data else { return }

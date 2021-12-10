@@ -15,13 +15,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sZ-qS-01p">
-                    <rect key="frame" x="24" y="0.0" width="370" height="21.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <rect key="frame" x="12" y="0.0" width="382" height="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfF-f8-JRt">
-                    <rect key="frame" x="24" y="27.5" width="370" height="18"/>
+                    <rect key="frame" x="12" y="30" width="382" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -31,11 +31,11 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="8sZ-qS-01p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9ij-Ts-Fd9"/>
-                <constraint firstItem="QfF-f8-JRt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="PqE-cV-8Rm"/>
+                <constraint firstItem="QfF-f8-JRt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="PqE-cV-8Rm"/>
                 <constraint firstAttribute="trailing" secondItem="8sZ-qS-01p" secondAttribute="trailing" constant="20" id="RGK-uq-zAK"/>
                 <constraint firstItem="QfF-f8-JRt" firstAttribute="top" secondItem="8sZ-qS-01p" secondAttribute="bottom" constant="6" id="gXq-Wr-4GT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QfF-f8-JRt" secondAttribute="trailing" constant="20" id="nw0-Zm-Cdi"/>
-                <constraint firstItem="8sZ-qS-01p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="taz-Sm-oR9"/>
+                <constraint firstItem="8sZ-qS-01p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="taz-Sm-oR9"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

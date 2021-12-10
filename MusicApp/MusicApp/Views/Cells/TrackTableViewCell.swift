@@ -14,7 +14,10 @@ final class TrackTableViewCell: UITableViewCell {
     @IBOutlet private weak var numberLabel: UILabel!
     @IBOutlet private weak var artistNamesLabel: UILabel!
 
-    func configure(title: String, duration: Int, trackNumber: Int, artists: String) {
+    func configure(title: String,
+                   duration: Int,
+                   trackNumber: Int,
+                   artists: String) {
         titleLabel.text = title
         durationLabel.text = duration.asString(style: .positional)
         numberLabel.text = String(trackNumber) + "."

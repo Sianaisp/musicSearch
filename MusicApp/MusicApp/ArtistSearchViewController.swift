@@ -17,7 +17,8 @@ class ArtistSearchViewController: UIViewController, UISearchBarDelegate, UISearc
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
-        tableView.register(UINib(nibName: Constants.artistHeaderView, bundle: nil), forHeaderFooterViewReuseIdentifier: Constants.artistHeaderView)
+        tableView.register(UINib(nibName: Constants.artistHeaderView, bundle: nil),
+                           forHeaderFooterViewReuseIdentifier: Constants.artistHeaderView)
     }
 
     func updateSearchResults(for searchController: UISearchController) {
@@ -58,18 +59,17 @@ class ArtistSearchViewController: UIViewController, UISearchBarDelegate, UISearc
 
 extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate {
 
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return Constants.headerHeight
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-            view.tintColor = .black
+        view.tintColor = .black
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Constants.artistHeaderView) as! ArtistsHeaderView
-    return headerView
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,7 +105,7 @@ extension ArtistSearchViewController {
             self.tableView.reloadData()
         })
     }
-
+    
     func decode(_ data: Data) {
         let decoder = JSONDecoder()
         do {

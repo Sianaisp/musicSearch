@@ -33,9 +33,9 @@ class AlbumsViewController: UIViewController {
 }
 
 extension AlbumsViewController: UICollectionViewDelegate,
-                                    UICollectionViewDataSource,
-                                    UICollectionViewDelegateFlowLayout {
-
+                                UICollectionViewDataSource,
+                                UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albums.count
     }
