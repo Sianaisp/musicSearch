@@ -13,14 +13,8 @@ final class ArtistTableViewCell: UITableViewCell {
     @IBOutlet weak var artistName: UILabel!
     @IBOutlet weak var artistImage: UIImageView!
 
-    func configure(artist: String, image: String) {
+    func configure(artist: String, imageUrl: String) {
         artistName.text = artist
-        do {
-            guard let url = URL(string: image) else { return }
-            let data = try Data(contentsOf: url)
-            artistImage.image = UIImage(data: data)
-        } catch {
-         print("\(error)")
-        }
+        artistImage.setImage(from: imageUrl)
     }
 }

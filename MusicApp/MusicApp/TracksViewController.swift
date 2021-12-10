@@ -14,10 +14,13 @@ class TracksViewController: UIViewController {
     private var tracks: [Track] = []
     @IBOutlet private weak var albumCover: UIImageView!
     var selectedAlbumID: Int = 0
+    var selectedAlbumCoverUrl: String?
+    var selectedArtist: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTracks()
+        albumCover.setImage(from: selectedAlbumCoverUrl ?? "")
     }
 }
 
@@ -29,9 +32,9 @@ extension TracksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as? TrackTableViewCell else { fatalError("Cell does not exist")}
         cell.configure(title: tracks[indexPath.row].title,
-                       duration: "3",
+                       duration: tracks[indexPath.row].duration,
                        trackNumber: tracks[indexPath.row].number,
-                       artists: tracks[indexPath.row].title)
+                       artists: selectedArtist ?? "")
         return cell
     }
 

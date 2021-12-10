@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
+class ArtistSearchViewController: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
 
     @IBOutlet private weak var tableView: UITableView!
     private let searchController = UISearchController()
@@ -29,9 +29,17 @@ class ArtistSearchViewController: UIViewController, UISearchResultsUpdating {
         }
     }
 
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.searchBar.text = ""
+        artists = []
+        searchController.searchBar.endEditing(true)
+        tableView.reloadData()
+    }
+
     func setupSearchBar() {
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
         let searchBar = navigationItem.searchController?.searchBar
         searchBar?.barTintColor = .white
         searchBar?.searchTextField.leftView?.tintColor = .white
@@ -55,6 +63,10 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
         return Constants.headerHeight
     }
 
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+            view.tintColor = .black
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: Constants.artistHeaderView) as! ArtistsHeaderView
     return headerView
@@ -69,7 +81,7 @@ extension ArtistSearchViewController: UITableViewDataSource, UITableViewDelegate
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier,
                                                        for: indexPath) as? ArtistTableViewCell else { fatalError("Could not dequeue cell")}
         cell.configure(artist: artists[indexPath.row].name,
-                       image: artists[indexPath.row].picture ?? "")
+                       imageUrl: artists[indexPath.row].picture ?? "")
         return cell
     }
 

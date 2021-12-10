@@ -14,11 +14,11 @@ class AlbumsViewController: UIViewController {
     private var albums: [Album] = []
     var selectedArtistID: Int = 0
     var selectedArtist: String?
+    var selectedAlbumUrl: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib(nibName: Constants.albumHeaderView, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: Constants.albumHeaderView)
+        setupCollectionView()
         loadAlbums()
     }
 
@@ -26,6 +26,8 @@ class AlbumsViewController: UIViewController {
         if let controller = segue.destination as? TracksViewController,
            let selectedAlbumID = sender as? Int {
             controller.selectedAlbumID = selectedAlbumID
+            controller.selectedAlbumCoverUrl = selectedAlbumUrl
+            controller.selectedArtist = selectedArtist
         }
     }
 }
@@ -55,11 +57,12 @@ extension AlbumsViewController: UICollectionViewDelegate,
                                                             for: indexPath) as? AlbumCollectionViewCell else { fatalError("Cell does not exist")}
         cell.configure(albumTitle: albums[indexPath.row].title,
                        albumImage: albums[indexPath.row].cover ?? "",
-                       artists: "names of artists")
+                       artists: selectedArtist ?? "")
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedAlbumUrl = albums[indexPath.row].cover
         presentTracks(selectedAlbumID: albums[indexPath.row].id)
     }
 
@@ -69,7 +72,8 @@ extension AlbumsViewController: UICollectionViewDelegate,
         if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                             withReuseIdentifier: Constants.albumHeaderView,
                                                                             for: indexPath as IndexPath) as? AlbumHeaderView {
-            headerView.configure(artist: selectedArtist ?? "", hasSeveralAlbums: true)
+            headerView.configure(artist: selectedArtist ?? "",
+                                 hasSeveralAlbums: albums.count > 1)
             return headerView
         }
         return UICollectionReusableView()
@@ -108,5 +112,12 @@ extension AlbumsViewController {
         catch {
             print("Failed to decode with error: \(error)")
         }
+    }
+
+    func setupCollectionView() {
+        collectionView.register(UINib(nibName: Constants.albumHeaderView, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: Constants.albumHeaderView)
+        let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.sectionHeadersPinToVisibleBounds = true
     }
 }
